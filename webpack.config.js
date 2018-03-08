@@ -5,6 +5,7 @@ module.exports = {
 
   entry: {
     core: './src/bundles/core.js',
+    coreB: './src/bundles/core-b.js',
     a: './src/bundles/a.js',
     b: './src/bundles/b.js',
   },
