@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
+  mode: 'none',
 
   entry: {
     core: './src/bundles/core.js',
