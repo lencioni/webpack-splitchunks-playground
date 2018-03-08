@@ -9,8 +9,8 @@ npm i
 npm run build
 ```
 
-The desired result is for any chunk that appears in `bundles/core.js` to not
-appear in any other bundle. Once this is solved for a single core bundle, I'd
-like to go farther and solve for N global "core" bundles.
+The desired result is for any chunk that appears in `bundles/core.js` or
+`bundles/core-b.js` to not appear in any other bundle (and also not be moved to
+a separate asset).
 
 [Relevant StackOverflow question](https://stackoverflow.com/questions/49163684/how-to-configure-webpack-4-to-prevent-chunks-from-list-of-entry-points-appearing)
