@@ -16,6 +16,8 @@ module.exports = {
   },
 
   optimization: {
+    runtimeChunk: 'single',
+
     splitChunks: {
       chunks: 'async',
       minSize: 30000,
