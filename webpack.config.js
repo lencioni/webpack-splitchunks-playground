@@ -1,12 +1,45 @@
 const path = require('path');
 
+function coreBundleCacheGroups(coreBundles) {
+  const cacheGroups = {};
+  const coreChunkNames = Object.keys(coreBundles);
+
+  // First bundle listed takes highest priority.
+  let priority = coreChunkNames.length;
+
+  coreChunkNames.forEach((name) => {
+    cacheGroups[name] = {
+      name,
+      chunks: 'all',
+      minSize: 0,
+      minChunks: 1,
+      reuseExistingChunk: true,
+      priority,
+      enforce: true,
+      test(module, chunks) {
+        return chunks.some((chunk) => {
+          return chunk.name === name;
+        });
+      },
+    };
+
+    priority -= 1;
+  });
+
+  return cacheGroups;
+}
+
+const coreBundles = {
+  core: './src/bundles/core.js',
+  coreB: './src/bundles/core-b.js',
+  coreC: './src/bundles/core-c.js',
+};
+
 module.exports = {
   mode: 'none',
 
   entry: {
-    core: './src/bundles/core.js',
-    coreB: './src/bundles/core-b.js',
-    coreC: './src/bundles/core-c.js',
+    ...coreBundles,
     a: './src/bundles/a.js',
     b: './src/bundles/b.js',
     c: './src/bundles/c.js',
@@ -21,24 +54,8 @@ module.exports = {
     runtimeChunk: 'single',
 
     splitChunks: {
-      chunks: 'async',
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      name: true,
-
       cacheGroups: {
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-        },
+        ...coreBundleCacheGroups(coreBundles),
       },
     },
   },
