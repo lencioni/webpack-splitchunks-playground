@@ -17,7 +17,10 @@
     "webpack-cli": "^2.0.10"
   },
   "dependencies": {
+    "aphrodite": "^1.2.5",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-motion": "^0.5.2",
+    "redux": "^3.7.2"
   }
 }
