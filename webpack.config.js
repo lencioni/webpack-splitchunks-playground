@@ -41,13 +41,12 @@ module.exports = {
   entry: {
     ...coreBundles,
     a: './src/bundles/a.js',
-    b: './src/bundles/b.js',
-    c: './src/bundles/c.js',
   },
 
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: path.resolve(__dirname, 'dist') + '/',
   },
 
   optimization: {

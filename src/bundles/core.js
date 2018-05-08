@@ -1,4 +1,3 @@
-import 'react';
-import 'react-dom';
-
 import '../core-module';
+
+console.log('core bundle');
